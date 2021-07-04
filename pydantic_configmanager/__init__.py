@@ -7,6 +7,12 @@ from pydantic import BaseModel
 
 T = TypeVar('T', bound='EnvironmentBaseModel')
 
+__all__ = [
+    'EnvironmentBaseModel'
+]
+
+__version__ = '0.1.0'
+
 
 class EnvironmentBaseModel(BaseModel):
     """Base config class based on a Pydantic Base Model."""
