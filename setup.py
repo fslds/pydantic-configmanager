@@ -6,7 +6,7 @@ https://github.com/pypa/sampleproject
 """
 from io import open
 from os import path, walk, environ
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 
 
 # Base Parameters
@@ -36,7 +36,7 @@ def find_scripts():
 # Get the long description from the `README.md` file.
 HERE = path.abspath(path.dirname(__file__))
 
-with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
+with open(path.join(HERE, 'docs/README.rst'), encoding='utf-8') as f:
     LONG_DESCRIPTION = f.read()
 
 # Verify that the default `pythontemplate` package name has been changed.
@@ -76,7 +76,7 @@ setup(
     # Often, this is the same as your README, so you can just read it in from
     # that file directly (as we have already done above)
     #
-    # This field corresponds to the "Description" metadata field:
+    # This field corresponds to the "Description" mMarkdownetadata field:
     # https://packaging.python.org/specifications/core-metadata/#description-optional
     long_description=LONG_DESCRIPTION,  # Optional
 
@@ -90,7 +90,7 @@ setup(
     #
     # This field corresponds to the "Description-Content-Type" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#description-content-type-optional
-    long_description_content_type='text/markdown',  # Optional (see note above)
+    long_description_content_type='text/x-rst',  # Optional (see note above)
     # This should be your name or the name of the organization which owns the
     # project.
     author=AUTHOR,  # Optional
@@ -134,7 +134,7 @@ setup(
     #
     #   py_modules=["my_module"],
     #
-    packages=find_packages(exclude=['contrib', 'docs', 'tests']),  # Required
+    packages=find_namespace_packages(exclude=['contrib', 'docs', 'tests']),  # Required
 
     # Specify which Python versions you support. In contrast to the
     # 'Programming Language' classifiers above, 'pip install' will check this
