@@ -87,4 +87,6 @@ html_sidebars = {
         'donate.html',
     ]
 }
-autoapi_modules = {'pydantic_configmanager': None}
+autoapi_modules = {'pydantic_configmanager': {
+        'output': 'api'}
+    }
