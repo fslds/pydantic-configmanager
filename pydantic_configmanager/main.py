@@ -33,6 +33,16 @@ def get_model_env_info(model: Type[BaseModel]):
         env_vars.append(env_field_info)
     return env_vars
 
+def env_translation(model: Type[BaseSettings]) -> Dict[str, str]:
+    fields: Dict[str, ModelField] = model.__fields__
+    translation_map: Dict[str, str] = dict()
+    for fieldname, field in fields.items():
+        names = field.field_info.extra.get('env_names',dict())
+        for name in names:
+            translation_map[name] = fieldname
+    return translation_map
+
+
 
 class SettingsConfig(BaseConfig):
 
@@ -132,6 +142,9 @@ class EnvironmentBaseModel(BaseSettings):
     @classmethod
     def from_env(cls, **data: Any) -> T:
         """Initialize object from environmnent variables."""
-        data = data or {}
-        data.update(environ)
+        data = data or dict()
+        env_mapping = env_translation(cls)
+        for env_name, field_name in env_mapping.items():
+            if env_name in environ and not data.get(field_name, None):
+                data[field_name] = environ.get(env_name)
         return cls(**data)  # type: ignore
