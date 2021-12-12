@@ -14,7 +14,7 @@ PACKAGE_NAME = 'pydantic_configmanager'
 AUTHOR = "Filipe Spencer Lopes"
 AUTHOR_EMAIL = 'filipe@spncr.be'
 DESCRIPTION = 'Get configurations with the help of pydantic'
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 REQUIREMENTS = [
     'pydantic'
 ]
